@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TechGarden</string>
+    <string-array name="array_devices">
+        <item>Computer</item>
+        <item>Tablet</item>
+        <item>SmartPhone</item>
+    </string-array>
+    <string-array name="array_states">
+        <item>NEW</item>
+        <item>USED</item>
+        <item>IN_REPAIR</item>
+    </string-array>
+</resources>
