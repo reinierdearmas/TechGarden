@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">TechGarden</string>
+    <string-array name="array_devices">
+        <item>ORDENADOR</item>
+        <item>TABLETA</item>
+        <item>TELEFONO_INTELIGENTE</item>
+    </string-array>
+    <string-array name="array_states">
+        <item>NUEVO</item>
+        <item>USADO</item>
+        <item>EN_REPARACION</item>
+    </string-array>
+    <string-array name="array_dualsim">
+        <item>SI</item>
+        <item>NO</item>
+    </string-array>
+</resources>

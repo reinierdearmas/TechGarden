@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.HomeTechGarden"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Tech Garden"
+        android:textSize="50sp"
+        android:textStyle="italic"
+        tools:ignore="HardcodedText"
+        android:layout_marginTop="40dp"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#A73DB8"
+        android:layout_gravity="center_horizontal"
+        android:foregroundGravity="center_horizontal"
+        android:layout_marginTop="40dp">
+
+        <TextView
+            android:id="@+id/tv_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SELECCIONE ACCION"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textAppearance="@id/tv_title"
+            tools:ignore="HardcodedText"
+            android:gravity="center"
+            android:textAlignment="center"/>
+
+        <RadioButton
+            android:id="@+id/radio_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADICIONAR UN DISPOSITIVO"
+            tools:ignore="HardcodedText"
+            android:layout_marginTop="15dp"/>
+
+        <RadioButton
+            android:id="@+id/radio_modify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MODIFICAR UN DISPOSITIVO"
+            tools:ignore="HardcodedText"/>
+
+        <RadioButton
+            android:id="@+id/radio_del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ELIMINAR UN DISPOSITIVO"
+            tools:ignore="HardcodedText"/>
+
+        <RadioButton
+            android:id="@+id/radio_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MOSTAR DETALLES DE LOS DISPOSITIVOS"
+            tools:ignore="HardcodedText"/>
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_device"
+        android:text="Seleccione: Dispositivo"
+        android:paddingTop="20dp"
+        android:layout_marginTop="20dp"
+        tools:ignore="HardcodedText"
+        android:visibility="invisible">
+    </TextView>
+
+   <Spinner
+        android:id="@+id/device_spinner"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        android:contextClickable="true"
+        android:entries="@array/array_devices"
+        android:visibility="invisible"
+        android:clickable="true"
+        android:focusable="true"/>
+
+    <EditText
+        android:id="@+id/et_brand"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="Marca"
+        tools:ignore="HardcodedText"
+        android:textColor="#020A4A"
+        android:visibility="invisible"/>
+
+    <EditText
+        android:id="@+id/et_model"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="Modelo"
+        tools:ignore="HardcodedText"
+        android:textColor="#020A4A"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_state"
+        android:text="Estado Dispositivo"
+        android:paddingTop="20dp"
+        android:layout_marginTop="20dp"
+        tools:ignore="HardcodedText"
+        android:visibility="invisible">
+    </TextView>
+
+    <Spinner
+        android:id="@+id/state_spinner"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:contextClickable="true"
+        android:entries="@array/array_states"
+        android:visibility="invisible"/>
+
+    <EditText
+        android:id="@+id/et_cpu"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="CPU"
+        tools:ignore="HardcodedText"
+        android:textColor="#020A4A"
+        android:visibility="invisible"/>
+
+    <EditText
+        android:id="@+id/et_ram"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="RAM"
+        tools:ignore="HardcodedText"
+        android:textColor="#020A4A"
+        android:visibility="invisible"/>
+
+    <EditText
+        android:id="@+id/et_imei"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="IMEI"
+        tools:ignore="HardcodedText"
+        android:textColor="#020A4A"
+        android:visibility="invisible"/>
+
+    <EditText
+        android:id="@+id/et_pantalla"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="Tamaño Pantalla Pulgadas"
+        tools:ignore="HardcodedText"
+        android:textColor="#020A4A"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_dualsim"
+        android:text="Dispositivo DualSIM"
+        android:paddingTop="20dp"
+        android:layout_marginTop="20dp"
+        tools:ignore="HardcodedText"
+        android:visibility="invisible">
+    </TextView>
+
+    <Spinner
+        android:id="@+id/dualsim_spinner"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:contextClickable="true"
+        android:entries="@array/array_dualsim"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_add_device"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Adicionar Dispositivo"
+        tools:ignore="HardcodedText"
+        android:layout_marginTop="40dp"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_remove_device"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eliminar Dispositivo"
+        tools:ignore="HardcodedText"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible"/>
+
+    <EditText
+        android:id="@+id/et_device_to_modify"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="Modificar Dispositivo"
+        tools:ignore="HardcodedText"
+        android:textColor="#020A4A"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_modify_device"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modificar Dispositivo"
+        tools:ignore="HardcodedText"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_show_device_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mostrar Detalles Dispositivos"
+        tools:ignore="HardcodedText"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continuar"
+        tools:ignore="HardcodedText"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible"
+        android:gravity="center"/>
+
+    <ScrollView
+        android:id="@+id/scrool_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="5dp"
+                android:visibility="invisible"
+                android:layout_marginTop="20dp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+
+
