@@ -1,6 +1,6 @@
 package com.example.techgarden
 
-open class Device(val brand: String, val model: String, val state: State) {
+open class Device(var brand: String, var model: String, var state: State) {
 
     private var id = ""
 
@@ -20,7 +20,7 @@ open class Device(val brand: String, val model: String, val state: State) {
     }
 
     fun setId(newId: String){
-       id = newId
+       this.id = newId
         }
 
     fun getId(): String{

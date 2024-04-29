@@ -58,12 +58,8 @@ class HomeTechGarden : AppCompatActivity() {
 
         //Ejecucion al tocar boton RemoveDevice
         binding.btnRemoveDevice.setOnClickListener {
-            val brand = etBrand.text.toString()
-            val model = etModel.text.toString()
-            val device = TypeDevice.valueOf(etDevice.toString())
-            val devices = DeviceRegister.allDevice
-            val id = ""
-            removeDevice(id)
+            removeDevice()
+            cleanField()
         }
 
         //Ejecucion al tocar boton ModifyDevice
@@ -79,58 +75,26 @@ class HomeTechGarden : AppCompatActivity() {
 
         //Ejecucion al seleccionar accion Adicionar
         binding.radioAdd.setOnClickListener {
-            binding.deviceSpinner.visibility = View.VISIBLE
-            binding.btnSelspinner.visibility = View.VISIBLE
-            binding.btnAddDevice.visibility = View.GONE
-            binding.tvDevice.visibility = View.VISIBLE
-            binding.stateSpinner.visibility = View.GONE
-            binding.tvState.visibility = View.GONE
-            binding.dualsimSpinner.visibility = View.GONE
-            binding.tvDualsim.visibility = View.GONE
-            binding.etBrand.visibility = View.GONE
-            binding.etModel.visibility = View.GONE
-            binding.etCpu.visibility = View.GONE
-            binding.etRam.visibility = View.GONE
-            binding.etImei.visibility = View.GONE
-            binding.etPantalla.visibility = View.GONE
-            binding.radioGroup.visibility = View.GONE
-            binding.tvResult.visibility = View.GONE
+            selDevice(action = "add")
         }
 
         //Ejecucion al seleccionar accion Modificar
         binding.radioModify.setOnClickListener {
-            binding.deviceSpinner.visibility = View.VISIBLE
-            binding.tvDevice.visibility = View.VISIBLE
-            binding.stateSpinner.visibility = View.VISIBLE
-            binding.tvState.visibility = View.VISIBLE
-            binding.dualsimSpinner.visibility = View.VISIBLE
-            binding.tvDualsim.visibility = View.VISIBLE
-            binding.etBrand.visibility = View.VISIBLE
-            binding.etModel.visibility = View.VISIBLE
-            binding.etCpu.visibility = View.VISIBLE
-            binding.etRam.visibility = View.VISIBLE
-            binding.etImei.visibility = View.VISIBLE
-            binding.etPantalla.visibility = View.VISIBLE
-            binding.btnModifyDevice.visibility = View.VISIBLE
-            binding.etDeviceToModify.visibility = View.VISIBLE
-            binding.radioGroup.visibility = View.GONE
-            binding.tvResult.visibility = View.GONE
+            selDevice(action = "update")
         }
 
         //Ejecucion al seleccionar accion Eliminar
         binding.radioDel.setOnClickListener {
-            binding.radioGroup.visibility = View.GONE
-            binding.btnRemoveDevice.visibility = View.VISIBLE
+            selDevice(action = "delete")
         }
 
         //Ejecucion al seleccionar accion Mostrar Detalles
         binding.radioDetail.setOnClickListener {
-            binding.btnShowDeviceDetail.visibility = View.VISIBLE
-            binding.radioGroup.visibility = View.GONE
+            selDevice(action = "detail")
         }
 
-        //Ejecucion al aceptar la seleccion de tipo de dispositivo
-        binding.btnSelspinner.setOnClickListener {
+        //Ejecucion al aceptar la seleccion de tipo de dispositivo para añadir
+        binding.btnSelspinneradd.setOnClickListener {
             val devSpinner = TypeDevice.valueOf(etDevice.getSelectedItem().toString())
 
             when (devSpinner) {
@@ -149,7 +113,8 @@ class HomeTechGarden : AppCompatActivity() {
                     binding.etImei.visibility = View.GONE
                     binding.etPantalla.visibility = View.GONE
                     binding.radioGroup.visibility = View.GONE
-                    binding.btnSelspinner.visibility = View.GONE
+                    binding.btnSelspinneradd.visibility = View.GONE
+                    binding.btnSelspinnerupdate.visibility = View.GONE
                     binding.tvResult.visibility = View.GONE
                 }
 
@@ -168,7 +133,8 @@ class HomeTechGarden : AppCompatActivity() {
                     binding.etImei.visibility = View.GONE
                     binding.etPantalla.visibility = View.VISIBLE
                     binding.radioGroup.visibility = View.GONE
-                    binding.btnSelspinner.visibility = View.GONE
+                    binding.btnSelspinneradd.visibility = View.GONE
+                    binding.btnSelspinnerupdate.visibility = View.GONE
                     binding.tvResult.visibility = View.GONE
                 }
 
@@ -187,12 +153,122 @@ class HomeTechGarden : AppCompatActivity() {
                     binding.etImei.visibility = View.VISIBLE
                     binding.etPantalla.visibility = View.GONE
                     binding.radioGroup.visibility = View.GONE
-                    binding.btnSelspinner.visibility = View.GONE
+                    binding.btnSelspinneradd.visibility = View.GONE
+                    binding.btnSelspinnerupdate.visibility = View.GONE
                     binding.tvResult.visibility = View.GONE
                 }
             }
 
+        }
+
+        //Ejecucion al aceptar la seleccion de tipo de dispositivo para añadir
+        binding.btnSelspinnerupdate.setOnClickListener {
+            val devSpinner = TypeDevice.valueOf(etDevice.getSelectedItem().toString())
+
+            when (devSpinner) {
+                TypeDevice.ORDENADOR -> {
+                    binding.btnAddDevice.visibility = View.GONE
+                    binding.btnModifyDevice.visibility = View.VISIBLE
+                    binding.deviceSpinner.visibility = View.GONE
+                    binding.tvDevice.visibility = View.GONE
+                    binding.stateSpinner.visibility = View.VISIBLE
+                    binding.tvState.visibility = View.VISIBLE
+                    binding.dualsimSpinner.visibility = View.GONE
+                    binding.tvDualsim.visibility = View.GONE
+                    binding.etBrand.visibility = View.VISIBLE
+                    binding.etModel.visibility = View.VISIBLE
+                    binding.etCpu.visibility = View.VISIBLE
+                    binding.etRam.visibility = View.VISIBLE
+                    binding.etImei.visibility = View.GONE
+                    binding.etPantalla.visibility = View.GONE
+                    binding.etDeviceToModify.visibility = View.VISIBLE
+                    binding.radioGroup.visibility = View.GONE
+                    binding.btnSelspinneradd.visibility = View.GONE
+                    binding.btnSelspinnerupdate.visibility = View.GONE
+                    binding.tvResult.visibility = View.GONE
+                }
+
+                TypeDevice.TABLETA -> {
+                    binding.btnAddDevice.visibility = View.GONE
+                    binding.btnModifyDevice.visibility = View.VISIBLE
+                    binding.deviceSpinner.visibility = View.GONE
+                    binding.tvDevice.visibility = View.GONE
+                    binding.stateSpinner.visibility = View.VISIBLE
+                    binding.tvState.visibility = View.VISIBLE
+                    binding.dualsimSpinner.visibility = View.GONE
+                    binding.tvDualsim.visibility = View.GONE
+                    binding.etBrand.visibility = View.VISIBLE
+                    binding.etModel.visibility = View.VISIBLE
+                    binding.etCpu.visibility = View.GONE
+                    binding.etRam.visibility = View.GONE
+                    binding.etImei.visibility = View.GONE
+                    binding.etPantalla.visibility = View.VISIBLE
+                    binding.etDeviceToModify.visibility = View.VISIBLE
+                    binding.radioGroup.visibility = View.GONE
+                    binding.btnSelspinneradd.visibility = View.GONE
+                    binding.btnSelspinnerupdate.visibility = View.GONE
+                    binding.tvResult.visibility = View.GONE
+                }
+
+                TypeDevice.TELEFONO_INTELIGENTE -> {
+                    binding.btnAddDevice.visibility = View.GONE
+                    binding.btnModifyDevice.visibility = View.VISIBLE
+                    binding.deviceSpinner.visibility = View.GONE
+                    binding.tvDevice.visibility = View.GONE
+                    binding.stateSpinner.visibility = View.VISIBLE
+                    binding.tvState.visibility = View.VISIBLE
+                    binding.dualsimSpinner.visibility = View.VISIBLE
+                    binding.tvDualsim.visibility = View.VISIBLE
+                    binding.etBrand.visibility = View.VISIBLE
+                    binding.etModel.visibility = View.VISIBLE
+                    binding.etCpu.visibility = View.GONE
+                    binding.etRam.visibility = View.GONE
+                    binding.etImei.visibility = View.VISIBLE
+                    binding.etPantalla.visibility = View.GONE
+                    binding.etDeviceToModify.visibility = View.VISIBLE
+                    binding.radioGroup.visibility = View.GONE
+                    binding.btnSelspinneradd.visibility = View.GONE
+                    binding.btnSelspinnerupdate.visibility = View.GONE
+                    binding.tvResult.visibility = View.GONE
+                }
             }
+
+        }
+    }
+
+    //Funcion para limpiar pantalla dependiedo del Radio Button seleccionado
+    private fun selDevice(action: String) {
+        binding.deviceSpinner.visibility = View.VISIBLE
+        binding.tvDevice.visibility = View.VISIBLE
+        binding.btnAddDevice.visibility = View.GONE
+        binding.stateSpinner.visibility = View.GONE
+        binding.tvState.visibility = View.GONE
+        binding.dualsimSpinner.visibility = View.GONE
+        binding.tvDualsim.visibility = View.GONE
+        binding.etBrand.visibility = View.GONE
+        binding.etModel.visibility = View.GONE
+        binding.etCpu.visibility = View.GONE
+        binding.etRam.visibility = View.GONE
+        binding.etImei.visibility = View.GONE
+        binding.etPantalla.visibility = View.GONE
+        binding.etDeviceToModify.visibility = View.GONE
+        binding.radioGroup.visibility = View.GONE
+        binding.tvResult.visibility = View.GONE
+        binding.btnRemoveDevice.visibility = View.GONE
+        binding.btnShowDeviceDetail.visibility = View.GONE
+        when (action) {
+            "add" -> binding.btnSelspinneradd.visibility = View.VISIBLE
+            "update" -> binding.btnSelspinnerupdate.visibility = View.VISIBLE
+            "delete" -> { binding.deviceSpinner.visibility = View.GONE
+                binding.tvDevice.visibility = View.GONE
+                binding.etDeviceToModify.visibility = View.VISIBLE
+                binding.btnRemoveDevice.visibility = View.VISIBLE
+            }
+            "detail" -> { binding.btnShowDeviceDetail.visibility = View.VISIBLE
+                binding.deviceSpinner.visibility = View.GONE
+                binding.tvDevice.visibility = View.GONE
+               }
+        }
     }
 
     //Funcion para añadir dispositivo segun su tipo
@@ -203,51 +279,50 @@ class HomeTechGarden : AppCompatActivity() {
             .toString() //Permite identificar como objeto unico
 
         when (device) {
-            TypeDevice.ORDENADOR -> {
-                saveObjectDevice(
-                    Computer(
-                        brand = brand,
-                        model = model,
-                        state = state
-                    ), uuid
+            TypeDevice.ORDENADOR -> { val comp =  Computer(
+                brand = brand,
+                model = model,
+                state = state)
+                saveObjectDevice(comp, uuid)
+                comp.setspecificationComputer(
+                    Specification(
+                        binding.etCpu.text.toString(),
+                        binding.etRam.text.toString(), "", "", "",
+                    )
                 )
-
-                Computer(
-                    brand = brand,
-                    model = model,
-                    state = state
-                ).setspecificationComputer(Specification(binding.etCpu.text.toString(),
-                    binding.etRam.text.toString(), "", "", "", ))
             }
 
-            TypeDevice.TABLETA -> {
-                saveObjectDevice(
-                    Tablet(
-                        brand = brand,
-                        model = model,
-                        state = state
-                    ), uuid
+            TypeDevice.TABLETA -> { val tab = Tablet(
+                brand = brand,
+                model = model,
+                state = state )
+                saveObjectDevice(tab, uuid
                 )
-                Tablet(
-                    brand = brand,
-                    model = model,
-                    state = state
-                ).setspecificationTablet(Specification("", "", "", "", binding.etPantalla.toString()))
+                tab.setspecificationTablet(
+                    Specification(
+                        "",
+                        "",
+                        "",
+                        "",
+                        binding.etPantalla.text.toString()
+                    )
+                )
             }
 
-            TypeDevice.TELEFONO_INTELIGENTE -> {
-                saveObjectDevice(
-                    SmartPhone(
-                        brand = brand,
-                        model = model,
-                        state = state
-                    ), uuid
+            TypeDevice.TELEFONO_INTELIGENTE -> { val smrt = SmartPhone(
+                brand = brand,
+                model = model,
+                state = state)
+                saveObjectDevice(smrt, uuid)
+                smrt.setspecificationSmatrphone(
+                    Specification(
+                        "",
+                        "",
+                        binding.etImei.text.toString(),
+                        binding.dualsimSpinner.getSelectedItem().toString(),
+                        ""
+                    )
                 )
-                SmartPhone(
-                    brand = brand,
-                    model = model,
-                    state = state
-                ).setspecificationSmatrphone(Specification("", "", binding.etImei.toString(), binding.dualsimSpinner.getSelectedItem().toString(), ""))
             }
         }
 
@@ -261,12 +336,16 @@ class HomeTechGarden : AppCompatActivity() {
     }
 
     //Funcio para eliminar dispositivo de la Object Class
-    private fun removeDevice(id: String) {
-        DeviceRegister.allDevice.forEach {
-            if (it.getId() == id) {
-                DeviceRegister.allDevice.remove(it)
+    private fun removeDevice() {
+        val id = binding.etDeviceToModify.text.toString()
+        val devices = DeviceRegister.allDevice
+        for (device in devices) {
+            if (device.getId() == id) {
+                devices.remove(device)
+                break
             }
         }
+
     }
 
     //Funcion para mostrar los dispositivos detallados empleando polimorfismo
@@ -274,8 +353,52 @@ class HomeTechGarden : AppCompatActivity() {
         return device.getDevice()
     }
 
-    //Funcion para buscar los dispositivos por modelo
+    //Funcion para actualizar los dispositivos de la Object Class
     private fun modifyDevice() {
+        val id = binding.etDeviceToModify.text.toString()
+        val brand = binding.etBrand.text.toString()
+        val model = binding.etModel.text.toString()
+        val state = State.valueOf(binding.stateSpinner.getSelectedItem().toString())
+        val devices = DeviceRegister.allDevice
+        for (it in devices) {
+            if (it.getId() == id) {
+                it.brand = brand
+                it.model = model
+                it.state = state
+                when (it) {
+                    is Computer -> { it.setspecificationComputer(
+                                Specification(
+                                binding.etCpu.text.toString(),
+                                binding.etRam.text.toString(), "", "", "",
+                            )
+                        )
+
+                    }
+                    is Tablet -> { it.setspecificationTablet(
+                            Specification(
+                            "",
+                            "",
+                            "",
+                            "",
+                            binding.etPantalla.text.toString()
+                        )
+                    )
+                    }
+                    is SmartPhone -> { it.setspecificationSmatrphone(
+                            Specification(
+                            "",
+                            "",
+                            binding.etImei.text.toString(),
+                            binding.dualsimSpinner.getSelectedItem().toString(),
+                            ""
+                        )
+                    )
+                    }
+                }
+                break
+            }
+        }
+
     }
 
     //Funcion para limpiar campos edit text de la vista
@@ -291,6 +414,7 @@ class HomeTechGarden : AppCompatActivity() {
             radioGroup.visibility = View.VISIBLE
             btnAddDevice.visibility = View.GONE
             btnModifyDevice.visibility = View.GONE
+            btnRemoveDevice.visibility = View.GONE
             btnContinue.visibility = View.GONE
             deviceSpinner.visibility = View.GONE
             stateSpinner.visibility = View.GONE

@@ -7,11 +7,11 @@ class Tablet(brand: String, model: String, state: State): Device(brand,model,sta
     private var specificationTablet: Specification = Specification("", "", "", "", "")
 
     fun getspecificationTablet(): Specification{
-        return specificationTablet
+        return this.specificationTablet
     }
 
     fun setspecificationTablet(specificationTabletNew: Specification){
-        specificationTablet = specificationTabletNew
+        this.specificationTablet = specificationTabletNew
     }
 
 }

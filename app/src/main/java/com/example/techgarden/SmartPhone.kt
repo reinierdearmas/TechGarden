@@ -8,11 +8,11 @@ class SmartPhone(brand: String, model: String, state: State) : Device(brand, mod
     private var specificationSmatrphone: Specification = Specification("", "", "", "", "")
 
     fun getspecificationSmatrphone(): Specification{
-        return specificationSmatrphone
+        return this.specificationSmatrphone
     }
 
     fun setspecificationSmatrphone(specificationSmatrphoneNew: Specification){
-        specificationSmatrphone = specificationSmatrphoneNew
+        this.specificationSmatrphone = specificationSmatrphoneNew
     }
 
 }

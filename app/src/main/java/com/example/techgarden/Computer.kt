@@ -7,11 +7,11 @@ class Computer(brand: String, model: String, state: State) : Device(brand, model
     private var specificationComputer: Specification = Specification("", "", "", "", "")
 
     fun getspecificationComputer(): Specification{
-        return specificationComputer
+        return this.specificationComputer
     }
 
-    fun setspecificationComputer(specificationNew: Specification){
-        specificationComputer = specificationNew
+    fun setspecificationComputer(specificationComputerNew: Specification){
+        this.specificationComputer = specificationComputerNew
     }
 
 }
