@@ -7,17 +7,13 @@ open class Device(var brand: String, var model: String, var state: State) {
     fun getDevice(): String {
         var detail = ""
         when (this) {
-            is Computer -> detail =
-                TypeDevice.ORDENADOR.toString() + "|" + this.getId() + "|" + this.state + "|" + this.brand + "|" + this.model + "|" + this.getspecificationComputer().cpu + "|" + this.getspecificationComputer().ram
-
-            is SmartPhone -> detail =
-                TypeDevice.TELEFONO_INTELIGENTE.toString() + "|" + this.getId() + "|" + this.state + "|" + this.brand + "|" + this.model + "|" + this.getspecificationSmatrphone().imei + "|" + this.getspecificationSmatrphone().dualSim
-
-            is Tablet -> detail =
-                TypeDevice.TABLETA.toString() + "|" + this.getId() + "|" + this.state + "|" + this.brand + "|" + this.model + "|" + this.getspecificationTablet().pantalla
+            is Computer -> detail = "Marca: ${brand}, Modelo: ${model}, Estado: ${state}, CPU: ${this.getspecificationComputer().cpu}, RAM: ${this.getspecificationComputer().ram}GB \n"
+            is SmartPhone -> detail = "Marca: ${this.brand}, Modelo: ${this.model}, Estado: ${this.state}, IMEI: ${this.getspecificationSmatrphone().imei} \n"
+            is Tablet -> detail = "Marca: ${this.brand}, Modelo: ${this.model}, Estado: ${this.state}, Pantalla: ${this.getspecificationTablet().pantalla} \n"
         }
         return detail
     }
+
 
     fun setId(newId: String){
        this.id = newId
