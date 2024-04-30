@@ -434,7 +434,7 @@ class HomeTechGarden : AppCompatActivity() {
             tvDualsim.visibility = View.GONE
         }
     }
-
+//funcion para ocultar el teclado
     private fun hideKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(binding.viewRoot.windowToken, 0)
